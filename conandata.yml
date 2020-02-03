@@ -1,4 +1,4 @@
 sources:
-  "1.0.0":
-    url: "https://github.com/libauthor/libname"
-    sha256: "98f6f57aab0a424469619ed3047728f0d3901ce8f0dea919c11e7966d807e870"
+  "2.34.1":
+    url: "http://ftp.gnome.org/pub/gnome/sources/at-spi2-atk/2.34/at-spi2-atk-2.34.1.tar.xz"
+    sha256: "776df930748fde71c128be6c366a987b98b6ee66d508ed9c8db2355bf4b9cc16"
