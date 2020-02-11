@@ -38,7 +38,7 @@ class LibnameConan(ConanFile):
             self.build_requires('pkg-config_installer/0.29.2@bincrafters/stable')
     
     def requirements(self):
-        self.requires('at-spi2-core/2.34.0@bincrafters/testing')
+        self.requires('at-spi2-core/2.35.1@bincrafters/testing')
         self.requires('atk/2.35.1@bincrafters/testing')
         self.requires('libxml2/2.9.9')
 
@@ -85,5 +85,5 @@ class LibnameConan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
-        self.cpp_info.includedirs = ['include/at-spi-2.0']
-        self.cpp_info.names['pkg_config'] = 'atspi-2'
+        self.cpp_info.includedirs = ['include/at-spi2-atk/2.0']
+        self.cpp_info.names['pkg_config'] = 'atk-bridge-2.0'
