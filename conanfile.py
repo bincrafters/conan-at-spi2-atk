@@ -9,11 +9,10 @@ class LibnameConan(ConanFile):
     description = "library that bridges ATK to At-Spi2 D-Bus service."
     topics = ("conan", "atk", "accessibility")
     url = "https://github.com/bincrafters/conan-at-spi2-atk"
-    homepage = "https://gitlab.gnome.org/GNOME/at-spi2-atk/"
+    homepage = "https://gitlab.gnome.org/GNOME/at-spi2-atk"
     license = "LGPL-2.1"
     generators = "pkg_config"
 
-    # Options may need to change depending on the packaged library
     settings = "os", "arch", "compiler", "build_type"
     options = {
         "shared": [True, False],
@@ -70,18 +69,10 @@ class LibnameConan(ConanFile):
         meson.build()
 
     def package(self):
-        self.copy(pattern="LICENSE", dst="licenses", src=self._source_subfolder)
+        self.copy(pattern="COPYING", dst="licenses", src=self._source_subfolder)
         meson = self._configure_meson()
         meson.install()
-        # If the CMakeLists.txt has a proper install method, the steps below may be redundant
-        # If so, you can just remove the lines below
-        include_folder = os.path.join(self._source_subfolder, "include")
-        self.copy(pattern="*", dst="include", src=include_folder)
-        self.copy(pattern="*.dll", dst="bin", keep_path=False)
-        self.copy(pattern="*.lib", dst="lib", keep_path=False)
-        self.copy(pattern="*.a", dst="lib", keep_path=False)
-        self.copy(pattern="*.so*", dst="lib", keep_path=False)
-        self.copy(pattern="*.dylib", dst="lib", keep_path=False)
+        tools.rmdir(os.path.join(self.package_folder, 'lib', 'pkgconfig'))
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
