@@ -38,8 +38,8 @@ class LibnameConan(ConanFile):
             self.build_requires('pkg-config_installer/0.29.2@bincrafters/stable')
     
     def requirements(self):
-        self.requires('at-spi2-core/2.35.1@bincrafters/testing')
-        self.requires('atk/2.35.1@bincrafters/testing')
+        self.requires('at-spi2-core/2.35.1@bincrafters/stable')
+        self.requires('atk/2.35.1@bincrafters/stable')
         self.requires('libxml2/2.9.9')
 
     def configure(self):
