@@ -4,46 +4,33 @@ import os
 import shutil
 
 
-class LibnameConan(ConanFile):
+class AtSPI2AtkConan(ConanFile):
     name = "at-spi2-atk"
     description = "library that bridges ATK to At-Spi2 D-Bus service."
     topics = ("conan", "atk", "accessibility")
     url = "https://github.com/bincrafters/conan-at-spi2-atk"
     homepage = "https://gitlab.gnome.org/GNOME/at-spi2-atk"
-    license = "LGPL-2.1"
+    license = "LGPL-2.1-or-later"
     generators = "pkg_config"
-
     settings = "os", "arch", "compiler", "build_type"
-    options = {
-        "shared": [True, False],
-        "fPIC": [True, False],
-        }
-    default_options = {
-        "shared": False,
-        "fPIC": True,
-        }
 
     _source_subfolder = "source_subfolder"
     _build_subfolder = "build_subfolder"
 
-    def config_options(self):
-        if self.settings.os == 'Windows':
-            del self.options.fPIC
-    
+    def configure(self):
+        del self.settings.compiler.libcxx
+        del self.settings.compiler.cppstd
+
     def build_requirements(self):
         if not tools.which('meson'):
             self.build_requires('meson/0.53.0')
         if not tools.which('pkg-config'):
             self.build_requires('pkg-config_installer/0.29.2@bincrafters/stable')
-    
+
     def requirements(self):
         self.requires('at-spi2-core/2.35.1@bincrafters/stable')
         self.requires('atk/2.35.1@bincrafters/stable')
         self.requires('libxml2/2.9.9')
-
-    def configure(self):
-        del self.settings.compiler.libcxx
-        del self.settings.compiler.cppstd
 
     def source(self):
         tools.get(**self.conan_data["sources"][self.version])
@@ -76,5 +63,5 @@ class LibnameConan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
-        self.cpp_info.includedirs = ['include/at-spi2-atk/2.0']
+        self.cpp_info.includedirs = [os.path.join('include', 'at-spi2-atk', '2.0')]
         self.cpp_info.names['pkg_config'] = 'atk-bridge-2.0'
