@@ -23,14 +23,14 @@ class AtSPI2AtkConan(ConanFile):
 
     def build_requirements(self):
         if not tools.which('meson'):
-            self.build_requires('meson/0.54.0')
+            self.build_requires('meson/0.54.1')
         if not tools.which('pkg-config'):
             self.build_requires('pkg-config_installer/0.29.2@bincrafters/stable')
 
     def requirements(self):
         self.requires('at-spi2-core/2.35.1@bincrafters/stable')
         self.requires('atk/2.35.1@bincrafters/stable')
-        self.requires('libxml2/2.9.9')
+        self.requires('libxml2/2.9.10')
 
     def source(self):
         tools.get(**self.conan_data["sources"][self.version])
