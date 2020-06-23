@@ -28,8 +28,8 @@ class AtSPI2AtkConan(ConanFile):
             self.build_requires('pkg-config_installer/0.29.2@bincrafters/stable')
 
     def requirements(self):
-        self.requires('at-spi2-core/2.35.1@bincrafters/stable')
-        self.requires('atk/2.35.1@bincrafters/stable')
+        self.requires('at-spi2-core/2.36.0@bincrafters/stable')
+        self.requires('atk/2.36.0@bincrafters/stable')
         self.requires('libxml2/2.9.10')
 
     def source(self):
