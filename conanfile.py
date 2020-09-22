@@ -25,7 +25,7 @@ class AtSPI2AtkConan(ConanFile):
         if not tools.which('meson'):
             self.build_requires('meson/0.54.2')
         if not tools.which('pkg-config'):
-            self.build_requires('pkg-config_installer/0.29.2@bincrafters/stable')
+            self.build_requires('pkgconf/1.7.3')
 
     def requirements(self):
         self.requires('at-spi2-core/2.38.0@bincrafters/stable')
