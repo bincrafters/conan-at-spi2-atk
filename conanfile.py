@@ -31,6 +31,7 @@ class AtSPI2AtkConan(ConanFile):
         self.requires('at-spi2-core/2.38.0@bincrafters/stable')
         self.requires('atk/2.36.0')
         self.requires('libxml2/2.9.10')
+        self.requires('glib/2.67.0', override=True)
 
     def source(self):
         tools.get(**self.conan_data["sources"][self.version])
