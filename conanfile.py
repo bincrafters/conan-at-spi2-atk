@@ -13,6 +13,14 @@ class AtSPI2AtkConan(ConanFile):
     license = "LGPL-2.1-or-later"
     generators = "pkg_config"
     settings = "os", "arch", "compiler", "build_type"
+    options = {
+        "shared": [True, False],
+        "fPIC": [True, False],
+        }
+    default_options = {
+        "shared": False,
+        "fPIC": True,
+        }
 
     _source_subfolder = "source_subfolder"
     _build_subfolder = "build_subfolder"
